@@ -1,0 +1,178 @@
+
+Projeto de Desenvolvimento de Dashboard de Gestão de Campanhas de Marketing
+
+Objetivo
+
+O objetivo deste projeto é desenvolver um dashboard de gestão de campanhas de marketing que permita aos usuários visualizar e gerenciar as campanhas de forma eficiente e eficaz. O dashboard deve ser capaz de atender às seguintes necessidades:
+
+Visualizar o desempenho das campanhas
+Gerenciar as campanhas
+Acompanhar os resultados
+Requisitos funcionais
+
+O dashboard deve fornecer as seguintes funcionalidades:
+
+
+
+
+iNFORMAÇOES 
+
+
+dados tipo campanha
+	text = models.CharField(max_length=255)
+
+
+
+dados da campanha
+	emprise		= models.ForeignKey(Emprise, on_delete=models.CASCADE,relative_name="_campaign")
+	types		= models.ManyToManyField(CampaignType)
+	name 		= models.CharField(max_length=255)
+	responsible = models.ForeignKey(Worker,null=True, on_delete=models.SET_NULL,relative_name="responsible") > usuario responsavel pela 	campanha
+	workers 	= models.ManyToManyField(Worker, relative_name="campaign") > usuarios trabalhando na campanha
+	goal 		= models.TextField(verbose_name="Objetivo") > objetivo da campanha
+	desc 		= models.TextField()
+	end_s 		= models.DateTimeField() > data final esperada
+
+
+
+Conta do instagram
+	emprise = models.ForeignKey(Emprise, on_delete=models.SET_NULL, blank=True,  null=True)
+	username = models.CharField(max_length=255)
+	password = models.BinaryField(blank=True, null=True,default=False)
+
+
+
+
+Publicaçao instagram
+	acc = seleção Conta do instagram
+	image = models.ImageField(upload_to=caminho_upload_imagem)
+	desc = models.TextField(max_length=2560)
+	scheduled_data = models.DateTimeField(null=True, blank=True, default=None)
+	data = models.DateTimeField(auto_now_add=True)
+	update = models.DataTimeField(auto_now_add=True) 
+	publication = models.ForeignKey(Publication, on_delete=models.CASCADE, related_name="_instagram")
+	views = models.IntergerField(default=0)
+
+
+
+Tarefas:
+
+
+
+Criar campanhas - 
+	limpa o centro do dashbord e adiciona ao htmlINNER o html do formulario de campanhas
+	Criar tipo campanha - (ex tipo: Fidelização de clientes)
+		abrir popup e adicionar formulario simples que registre o tipo de campanha e apos salvar seje adicionado o <option> ao <select> no  formulario de criaçao de campanha 
+
+Exibir lista de campanhas - 
+	limpa o centro do dashbord e adiciona ao htmlINNER o html da tabela de campanhas
+
+Exibir campanha expecifica - 
+	limpa o centro do dahsbord e adiciona ao htmlINNER o html dos dados da campanha
+
+
+Logar conta instagram
+	limpa o centro do dahsbord e adiciona ao htmlINNER o html do formulario username, password e empresa
+
+
+
+
+
+
+Funções de controle de redes sociais:
+
+Controlar contas de redes sociais
+
+Funções de otimização de campanhas:
+
+Otimizar campanhas com chat-GPT
+
+Funções de geração de conteúdo:
+
+
+
+Gerar artigos em massa com chat-GPT
+	
+	formulario
+		seletor de tipos de artigos
+			opiçoes de tipo
+				opçoes:
+					artigos sobre beneficios de assunto >	formulario	ex1
+					geraçao artigos politicos positivos > 	formulario	ex2
+
+
+				ex1: artigos sobre beneficios de assunto
+					formulario:	
+						variaveis
+							assunto (ja aparecendo opçoes pre-definidas)
+							empresa (ja aparecendo opçoes pre-definidas)
+
+				ex2: geraçao artigos politicos positivos
+					formulario:				
+						variaveis
+							nome do politico (ja aparecendo opçoes pre-definidas)
+							açao executada pelo politico  (ja aparecendo opçoes pre-definidas)
+							cidade do politico (ja aparecendo opçoes pre-definidas)
+
+
+
+Painel de controle geral:
+
+Visualizar indicadores de desempenho
+
+Requisitos não funcionais
+
+
+
+O dashboard deve atender aos seguintes requisitos não funcionais:
+
+
+
+
+Segurança: O acesso ao dashboard deve ser controlado por meio de autenticação e autorização.
+Desempenho: O dashboard deve ser capaz de lidar com um grande volume de dados sem comprometer o desempenho.
+Usabilidade: O dashboard deve ser fácil de usar e intuitivo.
+Designer da página
+
+
+
+O dashboard deve ter um designer moderno e responsivo, que possa ser acessado em diferentes dispositivos. A página deve ser dividida em seções, cada uma dedicada a uma funcionalidade específica.
+
+Frontend
+
+O frontend do dashboard deve ser desenvolvido em React.js, uma biblioteca de JavaScript que permite criar interfaces de usuário responsivas e eficientes.
+
+Cronograma
+
+O desenvolvimento do dashboard deve ser concluído em 6 meses.
+
+Escopo
+
+O escopo deste projeto inclui o desenvolvimento do frontend do dashboard. O backend do dashboard será desenvolvido por uma equipe separada.
+
+Próximos passos
+
+O próximo passo é iniciar o desenvolvimento do frontend do dashboard. A equipe responsável pelo desenvolvimento deve realizar uma análise de requisitos para garantir que o dashboard atenda às necessidades dos usuários.
+
+Detalhes adicionais
+
+A seguir, estão alguns detalhes adicionais sobre as funcionalidades do dashboard:
+
+Funções de gestão de campanhas:
+Para criar uma campanha, o usuário deve fornecer informações básicas, como o nome da campanha, a data de início e a data de término.
+A lista de campanhas deve exibir as informações básicas de cada campanha, como o nome, a data de início, a data de término e o status.
+A atualização da lista de campanhas deve permitir aos usuários filtrar e ordenar as campanhas.
+Ocultar uma campanha deve impedir que ela seja exibida na lista de campanhas.
+Funções de gestão de mídia:
+O gerenciamento de ativos de mídia deve permitir aos usuários carregar, editar e excluir ativos de mídia.
+O gerenciamento de fornecedores de mídia deve permitir aos usuários cadastrar, editar e excluir fornecedores de mídia.
+O gerenciamento de contratos de mídia deve permitir aos usuários cadastrar, editar e excluir contratos de mídia.
+Funções de controle de redes sociais:
+O controle de contas de redes sociais deve permitir aos usuários visualizar e gerenciar as postagens, os comentários e as curtidas nas redes sociais.
+Funções de otimização de campanhas:
+O otimizador de campanhas com chat-GPT deve permitir aos usuários gerar recomendações de otimização para as campanhas.
+Funções de geração de conteúdo:
+A geração de artigos em massa com chat-GPT deve permitir aos usuários gerar artigos de forma automatizada.
+Painel de controle geral:
+O painel de controle geral deve exibir indicadores de desempenho das campanhas, como a taxa de conversão, o custo por lead e o ROI.
+Este projeto tem o potencial de ser uma ferramenta valiosa para a gestão de campanhas de marketing. O dashboard deve fornecer aos usuários uma visão abrangente do desempenho das campanhas e permitir que eles tomem decisões informadas sobre como otimizar as campanhas para obter melhores resultados.
